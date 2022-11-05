@@ -1,6 +1,7 @@
 LIMIT = 5
 MAX_WIDTH = 4
 SUPPORTED_OPERATORS = ["+", "-"]
+GAP = 4
 
 ERROR = [
     "Error: Too many problems.",
@@ -31,7 +32,7 @@ def arithmetic_arranger(problems, display=False):
     third_line = ""  # Third Line
     fourth_line = ""  # Fourth Line
     arranged_problems = ""  # Output String
-    gap = "    "  # Gap between each problem
+    gap = " " * GAP  # Gap between each problem
 
     # If there are too many problems supplied to the function.
     if len(problems) > LIMIT:
