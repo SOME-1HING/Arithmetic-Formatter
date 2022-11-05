@@ -6,7 +6,7 @@ ERROR = [
     "Error: Too many problems.",
     "Error: Numbers cannot be more than four digits.",
     "Error: Numbers must only contain digits.",
-    "Error: Operator must be '+' or '-' .",
+    "Error: Operator must be '+' or '-'.",
 ]
 
 
@@ -24,14 +24,14 @@ def calc(num1, num2, operator):  # Defining the calculation function
 
 
 # Defining the arithmetic formatter function
-def arithmetic_arranger(problems, display=True):
+def arithmetic_arranger(problems, display=False):
 
     first_line = ""  # First Line
     second_line = ""  # Second Line
     third_line = ""  # Third Line
     fourth_line = ""  # Fourth Line
     arranged_problems = ""  # Output String
-    gap = " " * 4  # Gap between each problem
+    gap = "    "  # Gap between each problem
 
     # If there are too many problems supplied to the function.
     if len(problems) > LIMIT:
@@ -56,22 +56,21 @@ def arithmetic_arranger(problems, display=True):
         else:
             return ERROR[3]
 
-        separation = max(len(first_number), len(second_number), len(answer)) + 2
+        separation = max(len(first_number), len(second_number)) + 2
 
-        first_line = (
-            first_line + first_number.rjust(separation) + gap
-            if len(problems) > 1
-            else ""
-        )
-        second_line = (
-            second_line + operator + second_number.rjust(separation - 1) + gap
-            if len(problems) > 1
-            else ""
-        )
-        third_line = third_line + "-" * separation + gap if len(problems) > 1 else ""
-        fourth_line = (
-            fourth_line + answer.rjust(separation) + gap if len(problems) > 1 else ""
-        )
+        if problem != problems[-1]:
+            first_line = first_line + first_number.rjust(separation) + gap
+            second_line = (
+                second_line + operator + second_number.rjust(separation - 1) + gap
+            )
+            third_line = third_line + "-" * separation + gap
+            fourth_line = fourth_line + answer.rjust(separation) + gap
+
+        else:
+            first_line = first_line + first_number.rjust(separation)
+            second_line = second_line + operator + second_number.rjust(separation - 1)
+            third_line = third_line + "-" * separation
+            fourth_line = fourth_line + answer.rjust(separation)
 
     arranged_problems = first_line + "\n" + second_line + "\n" + third_line
     if display:
